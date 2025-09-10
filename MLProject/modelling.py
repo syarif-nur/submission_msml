@@ -12,12 +12,12 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
-    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "wine-qt_preprocessing.csv")
+    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "kidney_stone_urine_analysis_preprocessing.csv")
     data = pd.read_csv(file_path)
 
     X_train, X_test, y_train, y_test = train_test_split(
-        data.drop("label", axis=1),
-        data["label"],
+        data.drop("target", axis=1),
+        data["target"],
         random_state=42,
         test_size=0.2
     )

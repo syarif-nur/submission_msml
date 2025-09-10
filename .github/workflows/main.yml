@@ -9,8 +9,8 @@ on:
       - main
 
 env:
-  CSV_URL: "MLProject/wine-qt_preprocessing.csv"
-  TARGET_VAR: "Wine_Quality"
+  CSV_URL: "MLProject/kidney_stone_urine_analysis_preprocessing.csv"
+  TARGET_VAR: "Kidney_Stone"
 
 jobs:
   build:
@@ -51,7 +51,7 @@ jobs:
       # Build Docker Model
       - name: Build Docker Model
         run: |
-          mlflow models build-docker --model-uri "runs:/$RUN_ID/model" --name "wine-qt"
+          mlflow models build-docker --model-uri "runs:/$RUN_ID/model" --name "urine-analysis"
 
       # Login to Docker Hub
       - name: Log in to Docker Hub
@@ -63,9 +63,9 @@ jobs:
       # Tag the Docker image
       - name: Tag Docker Image
         run: |
-          docker tag wine-qt ${{ secrets.DOCKER_HUB_USERNAME }}/wine-qt:latest
+          docker tag urine-analysis ${{ secrets.DOCKER_HUB_USERNAME }}/urine-analysis:latest
 
       # Push Docker image to Docker Hub
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/wine-qt:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/urine-analysis:latest
